@@ -1,13 +1,17 @@
 package nordicwh.basiccommerce.model;
 
 import java.lang.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Client {
 
-    //private int idNumber_client;
+    private int idNumber_client;
     private final String email;
     private String password;
     private String name;
+    private List<Payment> payments = new ArrayList<>();
+
 
     @Override
     public String toString() {
@@ -46,5 +50,13 @@ public class Client {
 
     public void setName(java.lang.String name) {
         this.name = name;
+    }
+
+    public boolean addPayments(Payment payment) {
+        return payments.add(payment);
+    }
+
+    public boolean removePayments(Payment payment) {
+        return payments.remove(payment);
     }
 }

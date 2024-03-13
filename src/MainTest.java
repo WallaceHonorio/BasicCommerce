@@ -29,7 +29,7 @@ public class MainTest {
 
             //Test client
             System.out.println("Digite o email do cliente:");
-            Scanner scannerAux = new Scanner(System.in);
+            scannerAux = new Scanner(System.in);
             String clientAux1 = scannerAux.nextLine();
 
             System.out.println("Digite o password do cliente:");
