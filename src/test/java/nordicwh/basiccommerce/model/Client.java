@@ -12,6 +12,18 @@ public class Client {
     private String name;
     private List<Payment> payments = new ArrayList<>();
 
+    public Client(Client client) {
+        this.email = client.getEmail();
+        this.password = client.getPassword();
+        this.name = client.getName();
+        //this.payments = client.get
+    }
+
+    public Client(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
 
     @Override
     public String toString() {
@@ -22,33 +34,27 @@ public class Client {
                 '}';
     }
 
-    public Client(String email, String password, String name) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-    }
-
 //    public int getIdNumber_client() {
 //        return idNumber_client;
 //    }
 
-    public java.lang.String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public java.lang.String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(java.lang.String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public java.lang.String getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(java.lang.String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

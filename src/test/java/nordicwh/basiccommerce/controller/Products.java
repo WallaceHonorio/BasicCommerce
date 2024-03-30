@@ -13,6 +13,10 @@ public class Products {
         insertProduct(product);
     }
 
+    public Products(Products listProduct) {
+        this.listProduct = (List<Product>) listProduct;
+    }
+
     public boolean insertProduct (Product product){
         return listProduct.add(product);
     }

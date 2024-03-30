@@ -17,7 +17,7 @@ public class Sale {
     public Sale(Date date, Client client, Products listProduct, Payment payment) {
         this.date = date;
         this.client = client;
-        this.listProduct = listProduct;
+        this.listProduct = new Products(listProduct);
         this.payment = payment;
     }
 
@@ -27,5 +27,10 @@ public class Sale {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public void cartAdd(Product product){
+
+
     }
 }
