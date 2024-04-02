@@ -1,7 +1,6 @@
-package nordicwh.basiccommerce.model;
+package basiccommerce.model;
 
-import nordicwh.basiccommerce.controller.Products;
-import nordicwh.basiccommerce.model.Payment;
+import basiccommerce.controller.Products;
 
 public class Cart {
     private double total = 0;

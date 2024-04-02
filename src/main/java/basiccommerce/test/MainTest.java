@@ -1,6 +1,11 @@
-import nordicwh.basiccommerce.model.Client;
-import nordicwh.basiccommerce.model.Product;
+package basiccommerce.test;
 
+import basiccommerce.model.Client;
+import basiccommerce.model.Product;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -24,8 +29,9 @@ public class MainTest {
 
             Product product = new Product(productAux1, Double.valueOf(productAux2), Integer.valueOf(productAux3));
 
-            System.out.println(product);
-
+            EntityManagerFactory factory = Persistence.
+                    createEntityManagerFactory("h2bank");
+            EntityManager em = factory.createEntityManager();
 
             //Test client
             System.out.println("Digite o email do cliente:");
@@ -40,7 +46,12 @@ public class MainTest {
 
             Client client = new Client(clientAux1, clientAux2, clientAux3);
 
-            System.out.println(client);
+            em.getTransaction().begin();
+            em.persist(product);
+            em.persist(client);
+            em.getTransaction().commit();
+            em.close();
+
         }catch (NumberFormatException e){
             System.out.println("Aconteceu um erro: ");
             System.out.println(e.getMessage());

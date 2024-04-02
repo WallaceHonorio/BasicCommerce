@@ -1,6 +1,6 @@
-package nordicwh.basiccommerce.controller;
+package basiccommerce.controller;
 
-import nordicwh.basiccommerce.model.Product;
+import basiccommerce.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;

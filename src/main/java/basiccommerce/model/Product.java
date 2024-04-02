@@ -1,7 +1,14 @@
-package nordicwh.basiccommerce.model;
+package basiccommerce.model;
 
+import javax.persistence.*;
+
+@Entity
+//@Table(name = "product")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String supplier;
     private String manufacturer;
@@ -22,6 +29,10 @@ public class Product {
                 ", amount=" + amount +
                 '}';
     }
+
+    public Long getId() { return id; }
+
+    public String getName() { return name; }
 
     public String getSupplier() {
         return supplier;

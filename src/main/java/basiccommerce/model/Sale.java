@@ -1,6 +1,6 @@
-package nordicwh.basiccommerce.model;
+package basiccommerce.model;
 
-import nordicwh.basiccommerce.controller.Products;
+import basiccommerce.controller.Products;
 
 import java.util.Date;
 

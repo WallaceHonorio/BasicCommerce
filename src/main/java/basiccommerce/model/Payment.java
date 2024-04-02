@@ -1,4 +1,4 @@
-package nordicwh.basiccommerce.model;
+package basiccommerce.model;
 
 import java.util.Date;
 

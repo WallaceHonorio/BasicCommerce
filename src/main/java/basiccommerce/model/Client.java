@@ -1,16 +1,24 @@
-package nordicwh.basiccommerce.model;
+package basiccommerce.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.lang.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+//@Table(name = "product")
 public class Client {
 
-    private int idNumber_client;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private final String email;
     private String password;
     private String name;
-    private List<Payment> payments = new ArrayList<>();
+    //private List<Payment> payments = new ArrayList<>();
 
     public Client(Client client) {
         this.email = client.getEmail();
@@ -58,11 +66,11 @@ public class Client {
         this.name = name;
     }
 
-    public boolean addPayments(Payment payment) {
-        return payments.add(payment);
-    }
-
-    public boolean removePayments(Payment payment) {
-        return payments.remove(payment);
-    }
+//    public boolean addPayments(Payment payment) {
+//        return payments.add(payment);
+//    }
+//
+//    public boolean removePayments(Payment payment) {
+//        return payments.remove(payment);
+//    }
 }
