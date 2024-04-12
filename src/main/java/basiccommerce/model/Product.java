@@ -16,10 +16,12 @@ public class Product {
     private double price;
     private int amount;
     private LocalDate createDate = LocalDate.now();
-    @Enumerated(EnumType.STRING)
-    private ProductCategory category;
+    //@Enumerated(EnumType.STRING)
+    //private ProductCategory category;
+    @ManyToOne
+    private Category category;
 
-    public Product(String name, double price, int amount, ProductCategory category) {
+    public Product(String name, double price, int amount, Category category) {
         this.name = name;
         this.price = price;
         this.amount = amount;
@@ -81,14 +83,6 @@ public class Product {
 
     public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
-    }
-
-    public ProductCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(ProductCategory category) {
-        this.category = category;
     }
 
 }
