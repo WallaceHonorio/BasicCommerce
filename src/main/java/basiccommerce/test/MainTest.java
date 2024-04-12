@@ -53,13 +53,15 @@ public class MainTest {
 
             em.getTransaction().begin();
 
-  ]         ctDao.register(category);
+            ctDao.register(category);
             pdDao.register(product);
             em.flush();
             em.clear();
 
-            pdDao.update(product);
+            product = pdDao.update(product);
             product.setName("Celular Top");
+            em.flush();
+            pdDao.remove(product);
             em.flush();
             em.clear();
 
