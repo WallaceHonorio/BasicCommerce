@@ -1,6 +1,7 @@
 package basiccommerce.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 //@Table(name = "product")
@@ -14,11 +15,15 @@ public class Product {
     private String manufacturer;
     private double price;
     private int amount;
+    private LocalDate createDate = LocalDate.now();
+    @Enumerated(EnumType.STRING)
+    private ProductCategory category;
 
-    public Product(String name, double price,int amount) {
+    public Product(String name, double price, int amount, ProductCategory category) {
         this.name = name;
         this.price = price;
         this.amount = amount;
+        this.category = category;
     }
 
     @Override
@@ -64,6 +69,26 @@ public class Product {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
+    public ProductCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ProductCategory category) {
+        this.category = category;
     }
 
 }
