@@ -21,6 +21,8 @@ public class Product {
     @ManyToOne
     private Category category;
 
+    public Product(){}
+
     public Product(String name, double price, int amount, Category category) {
         this.name = name;
         this.price = price;

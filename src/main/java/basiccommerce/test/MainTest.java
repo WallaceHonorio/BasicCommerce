@@ -53,11 +53,15 @@ public class MainTest {
 
             em.getTransaction().begin();
 
-            ctDao.register(category);
+  ]         ctDao.register(category);
             pdDao.register(product);
+            em.flush();
+            em.clear();
 
-            em.getTransaction().commit();
-            em.close();
+            pdDao.update(product);
+            product.setName("Celular Top");
+            em.flush();
+            em.clear();
 
         }catch (NumberFormatException e){
             System.out.println("Aconteceu um erro: ");
