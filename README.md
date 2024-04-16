@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This API represents basic e-commerce, has a product, customer and sales relationship.
+This project represents basic e-commerce, has a product, customer and sales relationship.
 
 ## Usage criteria
 

@@ -1,7 +1,6 @@
 package basiccommerce.dao;
 
 import basiccommerce.model.Category;
-import basiccommerce.model.Product;
 
 import javax.persistence.EntityManager;
 import java.util.List;

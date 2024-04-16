@@ -1,15 +1,12 @@
 package basiccommerce.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.lang.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@Table(name = "product")
+@Table(name = "Client")
 public class Client {
 
     @Id
@@ -18,9 +15,13 @@ public class Client {
     private final String email;
     private String password;
     private String name;
-    //private List<Payment> payments = new ArrayList<>();
+    //private Payment payments;
+    @OneToMany()
+    private List<Payment> payments = new ArrayList<>();
+
 
     public Client(Client client) {
+        this.id = client.getId();
         this.email = client.getEmail();
         this.password = client.getPassword();
         this.name = client.getName();
@@ -42,9 +43,9 @@ public class Client {
                 '}';
     }
 
-//    public int getIdNumber_client() {
-//        return idNumber_client;
-//    }
+    public int getId() {
+        return id;
+    }
 
     public String getEmail() {
         return email;
@@ -66,6 +67,13 @@ public class Client {
         this.name = name;
     }
 
+//    public Payment getPayments() {
+//        return payments;
+//    }
+//
+//    public void setPayments(Payment payments) {
+//        this.payments = payments;
+//    }
 //    public boolean addPayments(Payment payment) {
 //        return payments.add(payment);
 //    }

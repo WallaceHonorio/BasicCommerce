@@ -80,7 +80,6 @@ public class MainTestApplication {
             Product p = pdDao.searchID(Long.getLong(searchAux1));
 
             System.out.println(p);
-
         } catch (NumberFormatException e){
             System.out.println("Aconteceu um erro: ");
             System.out.println(e.getMessage());
