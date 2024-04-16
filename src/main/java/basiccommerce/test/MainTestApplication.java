@@ -7,19 +7,19 @@ import basiccommerce.model.Product;
 import basiccommerce.util.JPAUtil;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class MainTestApplication {
 
-    static EntityManager em = JPAUtil.getEntityManager();
     private static Scanner keyboard = new Scanner(System.in).useDelimiter("\n");
     public static void main(String[] args) {
 
         var function = showMenu();
 
-        while (function != 9) {
+        while (function != 10) {
 
             try {
                 switch (function) {
@@ -32,8 +32,11 @@ public class MainTestApplication {
                     case 3:
                         searchId();
                         break;
+                    case 4:
+                        searchAll();
+                    break;
                     default:
-                        function = 9;
+                        function = 10;
                         break;
                 }
 
@@ -54,12 +57,13 @@ public class MainTestApplication {
                 1 - Registrar um produto.
                 2 - Alterar um cadastro de produto.
                 3 - Filtrar um produto por ID.
-                4 - Remover um produto.
-                5 - Registrar uma categoria.
-                6 - Alterar um cadastro de categoria.
-                7 - Filtrar uma categoria.
-                8 - Remover uma categoria.
-                9 - Sair.
+                4 - Filtrar todos os produtos.
+                5 - Remover um produto.
+                6 - Registrar uma categoria.
+                7 - Alterar um cadastro de categoria.
+                8 - Filtrar uma categoria.
+                9 - Remover uma categoria.
+                10 - Sair.
                 """);
         return keyboard.nextInt();
     }
@@ -70,10 +74,27 @@ public class MainTestApplication {
             Scanner scannerAux = new Scanner(System.in);
             String searchAux1 = scannerAux.nextLine();
 
-            ProductDao pdDao = new ProductDao(em);
-            Product product = new Product(pdDao.searchID(1L));//Long.getLong(searchAux1)));
+            EntityManager em = JPAUtil.getEntityManager();
 
-            System.out.println(product);
+            ProductDao pdDao = new ProductDao(em);
+            Product p = pdDao.searchID(Long.getLong(searchAux1));
+
+            System.out.println(p);
+
+        } catch (NumberFormatException e){
+            System.out.println("Aconteceu um erro: ");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void searchAll(){
+        try{
+
+            EntityManager em = JPAUtil.getEntityManager();
+
+            ProductDao pdDao = new ProductDao(em);
+            List<Product> all = pdDao.searchAll();
+            all.forEach(p-> System.out.println(p.getName()));
 
         } catch (NumberFormatException e){
             System.out.println("Aconteceu um erro: ");
@@ -100,15 +121,16 @@ public class MainTestApplication {
             Category category = new Category(categoryAux);
             Product product = new Product(productAux1, Double.valueOf(productAux2), Integer.valueOf(productAux3), category);
 
+            EntityManager em = JPAUtil.getEntityManager();
+            em.getTransaction().begin();
+
             ProductDao pdDao = new ProductDao(em);
             CategoryDao ctDao = new CategoryDao(em);
 
-            em.getTransaction().begin();
-
             ctDao.register(category);
             pdDao.register(product);
-            em.flush();
-            em.clear();
+            em.getTransaction().commit();
+            em.close();
 
         }catch (NumberFormatException e){
             System.out.println("Aconteceu um erro: ");

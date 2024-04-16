@@ -3,6 +3,7 @@ package basiccommerce.dao;
 import basiccommerce.model.Product;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class ProductDao {
 
@@ -27,5 +28,10 @@ public class ProductDao {
 
     public Product searchID(Long id) {
         return em.find(Product.class, id);
+    }
+
+    public List<Product> searchAll(){
+        String jpql = "SELECT p FROM Product p";
+        return em.createQuery(jpql, Product.class).getResultList();
     }
 }

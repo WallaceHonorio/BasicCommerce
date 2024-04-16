@@ -4,6 +4,7 @@ import basiccommerce.model.Category;
 import basiccommerce.model.Product;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class CategoryDao {
 
@@ -26,5 +27,10 @@ public class CategoryDao {
 
     public Category searchID(Long id) {
         return em.find(Category.class, id);
+    }
+
+    public List<Category> searchAll(){
+        String jpql = "SELECT c FROM Category c";
+        return em.createQuery(jpql, Category.class).getResultList();
     }
 }

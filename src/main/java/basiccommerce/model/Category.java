@@ -8,7 +8,7 @@ import javax.persistence.*;
 //    TECHNOLOGICAL;
 //}
 @Entity
-@Table(name = "category")
+@Table(name = "Category")
 public class Category {
 
     @Id
