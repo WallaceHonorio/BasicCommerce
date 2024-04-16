@@ -24,4 +24,8 @@ public class ProductDao {
         product = em.merge(product);
         this.em.remove(product);
     }
+
+    public Product searchID(Long id) {
+        return em.find(Product.class, id);
+    }
 }

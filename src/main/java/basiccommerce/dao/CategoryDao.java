@@ -1,6 +1,7 @@
 package basiccommerce.dao;
 
 import basiccommerce.model.Category;
+import basiccommerce.model.Product;
 
 import javax.persistence.EntityManager;
 
@@ -21,5 +22,9 @@ public class CategoryDao {
     public void remove(Category category) {
         category = em.merge(category);
         this.em.remove(category);
+    }
+
+    public Category searchID(Long id) {
+        return em.find(Category.class, id);
     }
 }

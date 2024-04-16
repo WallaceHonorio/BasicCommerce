@@ -13,10 +13,11 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class MainTestApplication {
 
+    static EntityManager em = JPAUtil.getEntityManager();
     private static Scanner keyboard = new Scanner(System.in).useDelimiter("\n");
     public static void main(String[] args) {
 
-        var function = exibirMenu();
+        var function = showMenu();
 
         while (function != 9) {
 
@@ -24,6 +25,12 @@ public class MainTestApplication {
                 switch (function) {
                     case 1:
                         registerProduct();
+                        break;
+                    case 2:
+                        //changeProduct();
+                        break;
+                    case 3:
+                        searchId();
                         break;
                     default:
                         function = 9;
@@ -35,26 +42,43 @@ public class MainTestApplication {
                 System.out.println("Pressione qualquer tecla e de ENTER para voltar ao menu");
                 keyboard.next();
             }
-            function = exibirMenu();
+            function = showMenu();
         }
 
         System.out.println("Finalizando a aplicação.");
     }
 
-    private static int exibirMenu() {
+    private static int showMenu() {
         System.out.println("""
                 BasicCommerce - ESCOLHA UMA OPÇÃO:
                 1 - Registrar um produto.
-                2 - 
-                3 - 
-                4 - 
-                5 - 
-                6 - 
-                7 - 
-                8 - 
-                9 - Sair
+                2 - Alterar um cadastro de produto.
+                3 - Filtrar um produto por ID.
+                4 - Remover um produto.
+                5 - Registrar uma categoria.
+                6 - Alterar um cadastro de categoria.
+                7 - Filtrar uma categoria.
+                8 - Remover uma categoria.
+                9 - Sair.
                 """);
         return keyboard.nextInt();
+    }
+
+    private static void searchId(){
+        try{
+            System.out.println("Digite o id do produto:");
+            Scanner scannerAux = new Scanner(System.in);
+            String searchAux1 = scannerAux.nextLine();
+
+            ProductDao pdDao = new ProductDao(em);
+            Product product = new Product(pdDao.searchID(1L));//Long.getLong(searchAux1)));
+
+            System.out.println(product);
+
+        } catch (NumberFormatException e){
+            System.out.println("Aconteceu um erro: ");
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void registerProduct() {
@@ -76,7 +100,6 @@ public class MainTestApplication {
             Category category = new Category(categoryAux);
             Product product = new Product(productAux1, Double.valueOf(productAux2), Integer.valueOf(productAux3), category);
 
-            EntityManager em = JPAUtil.getEntityManager();
             ProductDao pdDao = new ProductDao(em);
             CategoryDao ctDao = new CategoryDao(em);
 

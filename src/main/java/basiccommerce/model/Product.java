@@ -29,6 +29,13 @@ public class Product {
         this.amount = amount;
         this.category = category;
     }
+    public Product(Product product) {
+        this.id = product.id;
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.amount = product.getAmount();
+        this.category = product.getCategory();
+    }
 
     @Override
     public String toString() {
@@ -85,6 +92,15 @@ public class Product {
 
     public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
+    }
+
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 
 }
