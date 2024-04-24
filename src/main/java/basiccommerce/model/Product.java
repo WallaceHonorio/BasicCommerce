@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -19,7 +19,7 @@ public class Product {
     //@Enumerated(EnumType.STRING)
     //private ProductCategory category;
     @ManyToOne
-    private Category category;
+    private Category product_category;
 
     public Product(){}
 
@@ -27,14 +27,14 @@ public class Product {
         this.name = name;
         this.price = price;
         this.amount = amount;
-        this.category = category;
+        this.product_category = category;
     }
     public Product(Product product) {
         this.id = product.id;
         this.name = product.getName();
         this.price = product.getPrice();
         this.amount = product.getAmount();
-        this.category = product.getCategory();
+        this.product_category = product.getProduct_category();
     }
 
     @Override
@@ -95,12 +95,12 @@ public class Product {
     }
 
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setProduct_category(Category product_category) {
+        this.product_category = product_category;
     }
 
-    public Category getCategory() {
-        return category;
+    public Category getProduct_category() {
+        return product_category;
     }
 
 }

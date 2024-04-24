@@ -8,12 +8,12 @@ import javax.persistence.*;
 //    TECHNOLOGICAL;
 //}
 @Entity
-@Table(name = "Category")
+@Table(name = "category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
 
     public Category(){}
@@ -22,7 +22,7 @@ public class Category {
         this.name = name;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

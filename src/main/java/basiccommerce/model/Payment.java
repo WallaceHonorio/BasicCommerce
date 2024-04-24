@@ -3,7 +3,7 @@ package basiccommerce.model;
 import javax.persistence.*;
 import java.util.Date;
 @Entity
-@Table(name = "Payment")
+@Table(name = "payment")
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
