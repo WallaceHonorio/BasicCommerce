@@ -12,13 +12,16 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private final String email;
+    private String email;
     private String password;
     private String name;
+    private String cpf;
     //private Payment payments;
     @OneToMany()
     private List<Payment> payments = new ArrayList<>();
 
+    public Client(String email) {
+    }
 
     public Client(Client client) {
         this.id = client.getId();
